@@ -6,17 +6,17 @@ import shutil
 import re
 
 # --- Configuration ---
-VIDEO_FOLDER = r'C:\\ShaileshRajput\\Code\\img-process\\videos'   # IMPORTANT: Change this to your video folder path
+VIDEO_FOLDER = r'C:\\Learning\\Practical TLS\\videos'   # IMPORTANT: Change this to your video folder path
 OUTPUT_UNIQUE_SLIDES_FOLDER = "unique_slides" # New folder for unique slides
 OUTPUT_TEXT_FOLDER = "extracted_text"
 TEMP_FRAMES_FOLDER = "temp_frames"
 # Path to your Tesseract executable (e.g., 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe')
-PYTESSERACT_PATH = r'C:\\Users\\a735948\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe'
+PYTESSERACT_PATH = r'C:\\Program Files\\Tesseract-OCR'
 
 # Set the Tesseract command path
 pytesseract.pytesseract.tesseract_cmd = PYTESSERACT_PATH
 
-FRAME_INTERVAL_SECONDS = 5 
+FRAME_INTERVAL_SECONDS = 1
 
 # --- Page Number Region Configuration ---
 # These values are crucial and might need adjustment based on your videos.
@@ -35,8 +35,8 @@ def create_output_directories():
 
 def clean_temp_frames():
     """Removes the temporary frames folder."""
-    # if os.path.exists(TEMP_FRAMES_FOLDER):
-    #     shutil.rmtree(TEMP_FRAMES_FOLDER)
+    if os.path.exists(TEMP_FRAMES_FOLDER):
+        shutil.rmtree(TEMP_FRAMES_FOLDER)
     os.makedirs(TEMP_FRAMES_FOLDER, exist_ok=True) # Recreate for fresh start
 
 def extract_frames(video_path, output_dir, interval_seconds):
@@ -221,7 +221,7 @@ def process_video_for_unique_slides(video_file):
     #     print(f"No unique slide text extracted from {video_file}.")
 
     # Clean up temporary frames for this video
-    #shutil.rmtree(temp_video_frames_dir)
+    shutil.rmtree(temp_video_frames_dir)
 
 # --- Main Execution (unchanged) ---
 if __name__ == "__main__":
